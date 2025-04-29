@@ -14,11 +14,14 @@ Account::~Account(){
 Account::Account(int id, std::string name, std::string cpf){
     this->idAccount = id;
     this->nameAccount = name;
+
+    this->cpfAccount.reserve(11);
     for(const auto letter : cpf){
         if(isdigit(letter)){
-            this->cpfAccount = this->cpfAccount + letter;
+            this->cpfAccount.append(1, letter);
         }
     }
+    
     this->valueAccount = 0.00;
 }
 
