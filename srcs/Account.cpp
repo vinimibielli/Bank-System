@@ -1,10 +1,10 @@
 #include "include/Account.h"
 
 Account::Account(){
-    this->idAccount = NULL;
+    this->idAccount = 0;
     this->nameAccount = "";
     this->cpfAccount = "";
-    this->valueAccount = NULL;
+    this->valueAccount = 0;
 }
 
 Account::~Account(){
@@ -14,7 +14,11 @@ Account::~Account(){
 Account::Account(int id, std::string name, std::string cpf){
     this->idAccount = id;
     this->nameAccount = name;
-    this->cpfAccount = cpf;
+    for(const auto letter : cpf){
+        if(isdigit(letter)){
+            this->cpfAccount = this->cpfAccount + letter;
+        }
+    }
     this->valueAccount = 0.00;
 }
 

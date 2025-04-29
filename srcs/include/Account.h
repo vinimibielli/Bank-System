@@ -1,8 +1,10 @@
 #ifndef ACCOUNT_H
 #define ACCOUNT_H
 
+#include <iostream>
 #include <stdio.h>
 #include <string>
+#include <cctype>
 
 class Account {
     int idAccount;
