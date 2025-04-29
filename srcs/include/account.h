@@ -7,19 +7,19 @@
 #include <cctype>
 
 class Account {
-    int idAccount;
+    long long idAccount;
     std::string nameAccount;
     std::string cpfAccount;
-    double valueAccount;
+    long long balanceAccount;
 
     public:
         Account();
         ~Account();
-        Account(int idAccount, std::string nameAccount, std::string cpfAccount);
+        Account(long long idAccount, std::string nameAccount, std::string cpfAccount);
 
         //idAccount set and get
-        void setIdAccount(int id);
-        int  getIdAccount();
+        void setIdAccount(long long id);
+        long long  getIdAccount();
 
         //nameAccount set and get
         void setNameAccount(std::string name);
@@ -29,9 +29,12 @@ class Account {
         void setCpfAccount(std::string cpf);
         std::string getCpfAccount();
 
-        void setValueAccount(double value);
-        double getValueAccount();
+        void setBalanceAccount(long long balance);
+        long long getBalanceAccount();
 
+        void depositAccount(long long deposit);
+        bool withdrawAccount(long long withdraw);
+        
     };
 
 #endif

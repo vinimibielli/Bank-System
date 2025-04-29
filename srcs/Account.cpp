@@ -1,17 +1,17 @@
-#include "include/Account.h"
+#include "include/account.h"
 
 Account::Account(){
     this->idAccount = 0;
     this->nameAccount = "";
     this->cpfAccount = "";
-    this->valueAccount = 0;
+    this->balanceAccount = 0;
 }
 
 Account::~Account(){
 
 }
 
-Account::Account(int id, std::string name, std::string cpf){
+Account::Account(long long id, std::string name, std::string cpf){
     this->idAccount = id;
     this->nameAccount = name;
 
@@ -21,15 +21,15 @@ Account::Account(int id, std::string name, std::string cpf){
             this->cpfAccount.append(1, letter);
         }
     }
-    
-    this->valueAccount = 0.00;
+
+    this->balanceAccount = 0.00;
 }
 
 //idAccount set and get
-void Account::setIdAccount(int id){
+void Account::setIdAccount(long long id){
     this->idAccount = id;
 }
-int  Account::getIdAccount(){
+long long Account::getIdAccount(){
     return this->idAccount;
 }
 
@@ -43,15 +43,36 @@ std::string Account::getNameAccount(){
 
 //cpfAccount set and get
 void Account::setCpfAccount(std::string cpf){
-    this->cpfAccount = cpf;
+    this->cpfAccount.clear();
+    this->cpfAccount.reserve(11);
+    for(const auto letter : cpf){
+        if(isdigit(letter)){
+            this->cpfAccount.append(1, letter);
+        }
+    }
 }
 std::string Account::getCpfAccount(){
     return this->cpfAccount;
 }
 
-void Account::setValueAccount(double value){
-    this->valueAccount = this->valueAccount + value;
+void Account::setBalanceAccount(long long balance){
+    this->balanceAccount = balance;
 }
-double Account::getValueAccount(){
-    return this->valueAccount;
+
+long long Account::getBalanceAccount(){
+    return this->balanceAccount;
+}
+
+void Account::depositAccount(long long deposit){
+    this->balanceAccount = this->balanceAccount + deposit;
+}
+
+bool Account::withdrawAccount(long long withdraw){
+    if(withdraw > this->balanceAccount){
+        return false;
+    }
+
+    this->balanceAccount = this->balanceAccount - withdraw;
+    return true;
+    
 }
